@@ -1,0 +1,23 @@
+
+
+-- chap06 q1 
+select empno ,substr(empno,1,2)||'**', ename ,substr(ename,1,1)||'****'
+from emp; 
+
+-- chap06 q2 
+select empno , ename , sal , round(sal/21.5,2), round(sal/(21.5 * 8),1) 
+from emp;
+
+-- chap06 q3 
+select empno , ename , to_char(hiredate,'yyyy/MM/DD') ,to_char(add_months(hiredate,3),'yyyy-MM-DD') ,
+case 
+	when comm is null then 'N/A'
+	when comm >= 0 then comm + ' '
+	end as comm_text
+from emp;
+	
+case 
+	when comm is null then 'N/A'
+	when comm >= 0 then comm
+	end as comm_text
+

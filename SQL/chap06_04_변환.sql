@@ -49,6 +49,7 @@ from dual;
 
 select 
 		sysdate,
+		to_char(sysdate,'HH-MI-SS'),
 		to_char(sysdate,'HH24:MI:SS'),
 		to_char(sysdate,'HH12:MI:SS AM'),
 		to_char(sysdate,'HH:MI:SS P.M.')

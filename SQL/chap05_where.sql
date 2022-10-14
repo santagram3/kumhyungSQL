@@ -208,7 +208,6 @@ minus
 select mgr, job
   from emp where deptno=20
   ; 
-  
 /* B - (A AND B) */  
 select mgr, job
   from emp where deptno=20
@@ -224,7 +223,7 @@ intersect
 select empno, ename, sal, deptno
  from emp where deptno=10;
  
-
+ 
 /* 연산자 우선순위 
  * ()
  * *,/
@@ -238,67 +237,54 @@ select empno, ename, sal, deptno
  * */
  
 /* 1)emp테이블에서 사원이름(ename) S로 끝나는 사원 모두 출력 */
- select * from emp 
- where ename like '%S';
- 
-/* 2)30번 부서(deptno)에서 근무하는 사원 중 직채(job)이 SALESMAN 인
- * 사원의 사원번호, 이름, 직채, 급여, 부서번호 출력 */ 
- select empno , ename , job, sal , deptno 
- from emp 
- where deptno = 30 and job = 'SALESMAN'; 
- 
+select * from emp where ename like '%S'; 
+/* 2)30번 부서(deptno)에서 근무하는 사원 중 직책(job)이 SALESMAN 인
+ * 사원의 사원번호, 이름, 직책, 급여, 부서번호 출력 */ 
+select empno,ename,job,sal,deptno 
+  from emp
+ where deptno=30 and job='SALESMAN';
 /* 3)20번부서, 30번 부서에 근무하는 사원 중 급여가 2000 초과인 사원 출력 
- * 사원번호, 이름, 직채, 급여, 부서번호 */
- 
--- * 1. 집합연산자를 사용하지 않은 방식(or,and, 비교연산)
-select empno , ename , job, sal , deptno 
-from emp 
-where deptno = 20 and deptno = 30 and sal > 2000;
-      --where deptno in(20 ,30) and sal > 2000;
- 
- -- * 2. 집합연산자를 사용하는 방식(union,union all)  
-select empno , ename , job, sal , deptno 
-from emp 
-where deptno = 20 and sal > 2000;
-union
-select empno , ename , job, sal , deptno 
-from emp 
-where deptno = 30 and sal > 2000;
- 
+ * 사원번호, 이름, 직채, 급여, 부서번호
+ * 1. 집합연산자를 사용하지 않은 방식(or,and, 비교연산)
+ * 2. 집합연산자를 사용하는 방식(union,union all)
+ * */ 
+/*1 집합연산 미사용 */ 
+select empno,ename,job,sal,deptno   
+  from emp
+ /*where (deptno=20 or deptno=30 )and sal > 2000 */
+  where deptno in (20,30)
+   and sal > 2000;
+/*2. 집합연산 사용 */
+select empno,ename,job,sal,deptno   
+  from emp
+  where deptno =20
+   and sal > 2000
+union 
+select empno,ename,job,sal,deptno   
+  from emp
+  where deptno =30
+   and sal > 2000
+;    
 /* 4)급여열(sal)값이 2000이상 3000 이하 범위 이외의 값을 가진데이타 */
-select * 
-from emp 
-where not sal between 2000 and 3000;
-
-select * 
-from emp 
-where not sal >2000 or sal < 3000 ; 
-
+select * from emp where not sal between 2000 and 3000;
+select * from emp where sal < 2000 or sal > 3000;
 /* 5)사원이름에 E가 포함된 30번 부서의 사원 중 급여가 1000~2000사이인 
  * 사원의 이름, 사번, 급여, 부서번호 출력 */
-select empno , ename , job, sal , deptno 
-from emp 
-where ename like '%E%'
-and deptno = 30 
-and sal between 2000 and 2000;
-
+select ename, empno, sal,deptno
+  from emp
+ where ename like '%E%'
+   and deptno=30
+   and sal between 1000 and 2000;
 /* 6)추가수당(comm)이 존재하지않고 상급자가 있고 직책이 
  * MANAGER, CLERK인 
  * 사원 중 사원이름의 두번째 글자가 L이 아닌 사원 정보 */ 
- select *  
-from emp 
-where comm in null 
-and mgr is not null 
-and job in ('MANAGER' , 'CLERK')
-and ename not like '_L%'
-
+select * 
+  from emp   
+ where comm is null
+   and mgr is not null
+   and job in ('MANAGER','CLERK')
+   and ename not like '_L%';
  
- 
- 
- 
-  
-
-
 
 
 

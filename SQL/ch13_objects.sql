@@ -217,6 +217,7 @@ nocycle
 nocache
 ;
 
+
 create view myView 
 as 
 select empno, ename , job , sal 
@@ -233,7 +234,7 @@ from emp;
 
 /*다른 이름으로 바꾸는것 */
 rename myView to myView2;
-
+  
 select * from myView2;
 
 

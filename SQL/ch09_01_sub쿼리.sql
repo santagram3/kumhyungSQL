@@ -4,7 +4,6 @@ select sal from emp where ename = 'JONES';
 select * from emp where sal > 2975;
 
 /* SUB쿼리 */
--- 존스보다 급여를 많이 받는 사람들 정보 - 특정 한 값을 구함 
 select * 
   from emp 
  where sal > (select sal 
@@ -14,7 +13,7 @@ select *
 /* 'SCOTT'사원 보다 입사일자 먼저인 사원들 정보 출려 */
 select * from emp where hiredate < '1981-07-13';
 select hiredate from emp where ename ='SCOTT';   
--- 특정 한 값을 정함 
+
 /*update emp set hiredate = to_date('1981-07-13') 
  where ename='SCOTT'; */
 
@@ -30,7 +29,6 @@ select avg(sal) from emp; /* 2073.214285714285714285714285714285714286
 select * from emp where sal >  2073.214285714285714285714285714285714286
 ;                    
 /* 집계함수를 이용한 sub쿼리 */
--- 집계함수지만 , 하나의 값을 구하는것 이기때문에  
 select empno, ename, job, sal
   from emp
  where sal > (select avg(sal) from emp);

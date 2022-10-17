@@ -6,7 +6,7 @@
   3  v_ename varchar2(10);
   4  v_job  varchar2(10);
   5  begin
-  6 
+  6  v_ename :='KING';
   7  v_job :='PRESIDENT';
   8  dbms_output.put_line('v_empno:'||v_empno);
   9  dbms_output.put_line('v_ename:'||v_ename);
@@ -255,5 +255,57 @@ begin
 end;
 /
 /*-------------------------------------------------*/
+select empno,ename, dname,grade
+     from emp, dept, salgrade
+    where emp.deptno = dept.deptno
+      and sal between losal and hisal
+      and empno=7788;
+/*--------------------------------------------------*/
+ declare
+v_empno emp.empno%type := 7788;
+v_ename emp.ename%type;
+v_dname dept.dname%type;
+v_grade salgrade.grade%type;
 
-
+begin
+   select empno,ename, dname,grade
+     into v_empno, v_ename, v_dname,v_grade 
+     from emp, dept, salgrade
+    where emp.deptno = dept.deptno
+      and sal between losal and hisal
+      and empno=v_empno;
+   dbms_output.put_line('사원번호:'||v_empno);
+   dbms_output.put_line('사원명:'||v_ename);
+   dbms_output.put_line('부서명:'||v_dname);
+   dbms_output.put_line('급여등급:'||v_grade);
+    --사원번호,
+    --사원명
+    --부서명
+    --급여등급
+end;
+/     
+/*-------------------------------------------------*/
+declare
+v_empno emp.empno%type := 7788;
+v_ename emp.ename%type;
+v_dname dept.dname%type;
+v_grade salgrade.grade%type;
+v_empinfo emp%rowType;
+begin
+   select empno,ename, dname,grade,null,null,null,null
+     into v_empinfo 
+     from emp, dept, salgrade
+    where emp.deptno = dept.deptno
+      and sal between losal and hisal
+      and empno=v_empno;
+   dbms_output.put_line('사원번호:'||v_empinfo.empno);
+   dbms_output.put_line('사원명:'||v_empinfo.ename);
+   dbms_output.put_line('부서명:'||v_empinfo.job);
+   dbms_output.put_line('급여등급:'||v_empinfo.mgr);
+    --사원번호,
+    --사원명
+    --부서명
+    --급여등급
+end;
+/
+      

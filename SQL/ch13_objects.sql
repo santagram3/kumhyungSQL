@@ -217,25 +217,19 @@ nocycle
 nocache
 ;
 
-
-create view myView 
-as 
-select empno, ename , job , sal 
-from emp;
+/* or replace옵션 은 같은 이름으로 내용변경시 사용
+ * -view, procedure, function, trigger */
+create or replace view myView2
+as
+select empno,ename,job,sal,hiredate
+ from emp
+ ;
 
 select * from myView;
 
-/*or replace 옵션은 같은 이름으로 내용 변경시 사용 
- * - view , procedure ,  function ,trigger */
-create or replace view myView 
-as 
-select empno, ename , job , sal 
-from emp;
-
-/*다른 이름으로 바꾸는것 */
 rename myView to myView2;
-  
-select * from myView2;
+
+
 
 
 

@@ -67,4 +67,60 @@ select empno as employee_no,
        comm commission,
        deptno as department_no
   from emp;
+  
+  create table Qnull (
+  s1 number(10), /*더하기*/
+  s2 number(10),/*빼기*/
+  s3 number(10),/*곱하기*/
+  s4 number(10),/*나누기*/
+  b1 varchar2(10),/*더하기*/
+  b2 varchar2(10),/*빼기*/
+  b3 varchar2(10),/*곱하기*/
+  b4 varchar2(10)/*나누기*/
+  );
+  alter table qnull add PK number(5); 
+  
+ insert into qnull values(5,5,5,5,'김','김','김','김');
 
+  select * from qnull;
+  
+  update qnull 
+  set s1 = s1+null
+  where pk = 1 ;
+  
+  update qnull 
+  set s2 = s1-null
+  where pk = 1 ;
+  
+  update qnull 
+  set s3 = s1*null
+  where pk = 1 ;
+  
+  update qnull 
+  set s4 = s1/null
+  where pk = 1 ;
+  
+  --------------------------------
+  
+  update qnull 
+  set b1 = b1+null
+  where pk = 1 ;
+  
+  update qnull 
+  set b2 = b1-null
+  where pk = 1 ;
+  
+  update qnull 
+  set b3 = b1*null
+  where pk = 1 ;
+  
+  update qnull 
+  set b4 = b1/null
+  where pk = 1 ;
+  
+  
+  
+  update qnull 
+  set s1 = 5
+  where pk = 1 ;
+  

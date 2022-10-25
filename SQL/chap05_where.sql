@@ -30,16 +30,20 @@ select * from emp where sal >=300;
 /* 급여가 2500이상 이고(and) 직업(job)이 analyst인 사원 정보 */
 select * from emp where sal>=2500 and job='ANALYST';
 
+select * from emp; 
+
 /* 문자 대소 비교(비교문자열이 하나인 경우) */
 select * from emp where ename >='F';
 
 /* 문자 대소 비교(비교문자열이 여러개 인 경우) */
-select * from emp where ename <='FORZ';
+select * from emp where ename >='FORZ';
 
 /* 등가 비교 다름 */
 select * from emp where sal !=3000;
 select * from emp where sal <> 3000;
 select * from emp where sal ^=3000;
+
+select * from emp; 
 
 /* 논리 부정 not 연산자 */
 select * from emp where not sal=3000;
@@ -51,6 +55,7 @@ select * from emp
 select * from emp where deptno = 20 or deptno=10;
 select * from emp where mgr=7839 or mgr=7788;
  /* IN 연산자로 출력 */
+
 select * from emp 
  where job in ('MANAGER','SALESMAN','CLERK');
  
@@ -74,6 +79,9 @@ select * from emp where sal < 2000 or sal >3000;
 select * from emp where sal between 2000 and 3000;
 select * from emp where not sal between 2000 and 3000;
 
+
+select * from emp;
+
 /* like와 와일드카드문자 */
 select * from emp where ename like 'S%';/*S로 시작하는 이름 */
 /* 사원이름의 두 번째 글자가 L인 사원만 출력하기 */
@@ -92,6 +100,8 @@ select * from emp where not ename like '%AM%';
 select * from emp where comm=null;/* null은 =로 비교 불가 */
 select * from emp where comm is null;
 select * from emp where mgr is not null;
+
+select * from emp;
 
 /* NULL이 있는 칼럼의 비교 연산 */
 select * from emp where sal > null;
